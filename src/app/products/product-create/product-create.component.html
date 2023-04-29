@@ -1,10 +1,10 @@
-<h2>Add New Product Here</h2>
+<h2>Add New Course Here</h2>
   <mat-card class="addForm">
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="inputStyle">
       <mat-label>Course Name</mat-label>
       <input matInput type="text" [(ngModel)] = "inputName">
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field >
       <mat-label>Course Owner</mat-label>
       <input matInput type="text" [(ngModel)] = "inputOwner">
     </mat-form-field>
@@ -16,11 +16,14 @@
       <mat-label>Course Description</mat-label>
       <textarea matInput rows="4" [(ngModel)] = "inputDesc"></textarea>
     </mat-form-field>
-  <button
-  mat-raised-button
-  color='primary'
-  class="addBtn"
-  (click)="onAddProduct()">Save Product</button>
+    <div class="addBtnAlign">
+      <button
+      mat-fab extended
+      color='primary'
+      class="addBtn"
+      (click)="onAddProduct()">Save Course</button>
+    </div>
+
   </mat-card>
 
 
