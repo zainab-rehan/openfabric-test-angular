@@ -1,26 +1,57 @@
 <h2>Add New Product Here</h2>
-  <mat-card class="addForm">
-    <mat-form-field class="example-full-width">
-      <mat-label>Course Name</mat-label>
-      <input matInput type="text" [(ngModel)] = "inputName">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <mat-label>Course Owner</mat-label>
-      <input matInput type="text" [(ngModel)] = "inputOwner">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Course Cost</mat-label>
-      <input matInput type="text" [(ngModel)] = "inputCost">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Course Description</mat-label>
-      <textarea matInput rows="4" [(ngModel)] = "inputDesc"></textarea>
-    </mat-form-field>
-  <button
-  mat-raised-button
-  color='primary'
-  class="addBtn"
-  (click)="onAddProduct()">Save Product</button>
+  <mat-card>
+    <form (submit)="onAddProduct(productForm)" #productForm="ngForm" >
+      <mat-form-field class="example-full-width">
+        <mat-label>Course Name</mat-label>
+        <input
+        matInput
+        type="text"
+        name="name"
+        ngModel
+        required
+        #title="ngModel">
+        <mat-error *ngIf="title.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Course Owner</mat-label>
+        <input
+        matInput
+        type="text"
+        name="owner"
+        ngModel
+        required
+        #owner="ngModel">
+        <mat-error *ngIf="owner.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="textBg">
+        <mat-label>Course Cost</mat-label>
+        <input
+        matInput
+        type="text"
+        name="cost"
+        ngModel
+        required
+        #cost="ngModel">
+        <mat-error *ngIf="cost.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Course Description</mat-label>
+        <textarea
+        matInput
+        rows="4"
+        name="desc"
+        ngModel
+        required
+        #desc="ngModel"></textarea>
+        <mat-error *ngIf="desc.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    <button
+    mat-raised-button
+    color='primary'
+    class="addBtn"
+    type="submit">Save Product</button>
+    </form>
+
   </mat-card>
 
 

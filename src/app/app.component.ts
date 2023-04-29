@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Product } from './products/product.model';
 
 @Component({
   selector: 'app-root',
@@ -6,11 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  //here we will manage the list of the products
-  // we will get product from product-create component and pass in to product-list component
+// no need for this now
+ /*
+    products : Product[]=[];
 
-  products=[];
-  productAdded(product){
-    this.products.push(product);
-  }
+    productAdded(product: Product){
+      this.products.push(product);
+    }
+  */
 }
