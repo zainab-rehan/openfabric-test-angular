@@ -3,11 +3,12 @@
   padding-bottom: 1em;
 }
 .addForm {
-  min-width: 150px;
-  max-width: 500px;
   width: 100%;
-}
 
+}
+.inputStyle{
+  color:darkslateblue;
+}
 .example-full-width {
   width: 100%;
 }
@@ -19,4 +20,8 @@ textarea{
 .addBtn{
   margin: 1em;
   width: 135px;
+}
+.addBtnAlign{
+  display: flex;
+ justify-content:end;
 }
