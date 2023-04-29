@@ -1,6 +1,7 @@
 :host{
   display: block;
   padding-bottom: 1em;
+  background-color: rgb(255, 255, 255) !important;
 }
 .addForm {
   width: 100%;
@@ -13,9 +14,11 @@
   width: 100%;
 }
 
-mat-form-field,
+form,mat-form-field,
+input,
 textarea{
   width:100%;
+
 }
 .addBtn{
   margin: 1em;

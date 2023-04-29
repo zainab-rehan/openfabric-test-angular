@@ -27,6 +27,8 @@ export class ProductCreateComponent{
       form.value.cost,
       form.value.desc);
 
+      form.resetForm();
+
   }
 
   //validation and error messages

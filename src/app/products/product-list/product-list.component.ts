@@ -28,4 +28,11 @@ export class ProductListComponent implements OnInit, OnDestroy{
     //to avoid memory leak we unsubscribe
     this.productsSub.unsubscribe();
   }
+
+  onEditClick(){
+
+  }
+  onDeleteClick(){
+    
+  }
 }

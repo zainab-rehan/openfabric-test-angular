@@ -7,4 +7,21 @@
 .noProductText{
   text-align: center;
 }
+.Spacer{
+  flex: 1 1 ;
+}
 
+.productCard {
+  max-width: 100%;
+  margin:1rem;
+  border-radius: 8px;
+  color:darkslateblue;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.actionBoxStyle{
+  padding: 0px;
+}

@@ -32,6 +32,7 @@
         ngModel
         required
         #cost="ngModel">
+        <mat-hint>Enter cost in USD($)</mat-hint>
         <mat-error *ngIf="cost.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
       <mat-form-field>
