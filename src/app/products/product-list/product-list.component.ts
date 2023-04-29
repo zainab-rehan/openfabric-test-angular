@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit, OnDestroy{
   constructor(public productsService : ProductsService){}
 
   ngOnInit(): void {
-    this.productList = this.productsService.getProducts();
+    this.productsService.getProducts();
     //3 parameters --- subscribe(data, error, when no more data can be added)
     this.productsSub = this.productsService.getProductUpdateListner()
       .subscribe(( productList: Product[])=>{
@@ -33,6 +33,6 @@ export class ProductListComponent implements OnInit, OnDestroy{
 
   }
   onDeleteClick(){
-    
+
   }
 }
