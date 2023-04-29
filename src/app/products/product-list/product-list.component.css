@@ -8,3 +8,7 @@
 .noProductText{
   text-align: center;
 }
+
+.mat-accordion{
+  margin-bottom: 16px;
+}
