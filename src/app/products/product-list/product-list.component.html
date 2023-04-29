@@ -1,0 +1,17 @@
+<mat-accordion multi="true" *ngIf="productList.length > 0">
+  <mat-expansion-panel *ngFor="let product of productList">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{product.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{product.owner}}
+      </mat-panel-description>
+      <mat-panel-description>
+        {{product.cost}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p> {{product.desc}}</p>
+  </mat-expansion-panel>
+</mat-accordion>
+<p *ngIf="productList.length <= 0" class="noProductText mat-body-1">No course added yet!</p>

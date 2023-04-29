@@ -1,0 +1,22 @@
+:host{
+  display: block;
+  padding-bottom: 1em;
+}
+.addForm {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+mat-form-field,
+textarea{
+  width:100%;
+}
+.addBtn{
+  margin: 1em;
+  width: 135px;
+}

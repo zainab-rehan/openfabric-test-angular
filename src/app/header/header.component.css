@@ -1,0 +1,7 @@
+.mainHeader{
+  background-color: darkslateblue;
+  color: white;
+}
+.headerSpacer{
+  flex: 1 1 auto;
+}
