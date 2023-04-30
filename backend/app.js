@@ -1,7 +1,19 @@
+//2OEiubfdOvjvqczP
+
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const Product = require('./models/product');
 
 const app = express();
+
+mongoose.connect("mongodb+srv://zainabrehanzrh:2OEiubfdOvjvqczP@cluster0.hfjvegu.mongodb.net/?retryWrites=true&w=majority")
+.then(()=>{
+  console.log("Connected to the database!!");
+})
+.catch(()=>{
+  console.log("Connection Failed to the database!!");
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
@@ -21,8 +33,14 @@ app.use((req, res, next)=>{
 });
 
 app.post('/products',(req, res, next)=>{
-  const product = req.body;
+  const product = new Product({
+    name : req.body.name,
+    owner :req.body.owner,
+    cost : req.body.cost,
+    desc : req.body.desc
+  });
   console.log(product);
+  product.save();
   res.status(201).json({
     message:'Product added successfully!'
   });
@@ -30,36 +48,15 @@ app.post('/products',(req, res, next)=>{
 
 
 app.get('/products',(req, res, next)=>{
-  const products= [
-    {
-      id: '1',
-      name: 'Etsy',
-      owner: 'Zainab',
-      cost:'30',
-      desc: 'Learn to sell'
-    },
-    {
-      id: '2',
-      name: 'Driving',
-      owner: 'Hamza',
-      cost:'20',
-      desc: 'Learn to drive'
-    },
-    {
-      id: '3',
-      name: 'Writing',
-      owner: 'Amna',
-      cost:'10',
-      desc: 'Learn to write'
-    }
-  ]
+  Product.find()
+  .then(documents => {
+    console.log(documents);
+    res.status(200).json({
+      message:'Products fetch successfully!',
+      products:documents
+    });
 
-
-  res.status(200).json({
-    message:'Products fetch successfully!',
-    products:products
   });
-
  });
 
  module.exports = app;

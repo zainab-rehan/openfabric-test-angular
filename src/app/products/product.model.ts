@@ -1,7 +1,7 @@
 export interface Product{
-  id:String;
-  name: String;
-  owner: String;
-  cost:String;
-  desc:String;
+  id:string;
+  name: string;
+  owner: string;
+  cost:string;
+  desc:string;
 }
