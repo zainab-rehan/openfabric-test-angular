@@ -33,7 +33,7 @@
     <button mat-icon-button class="editIcon" aria-label="Edit Product icon" (click)="onEditClick()" color="primary">
       <mat-icon>create</mat-icon>
     </button>
-    <button mat-icon-button class="deleteIcon" aria-label="delete Product icon" (click)="onDeleteClick()" color="warn">
+    <button mat-icon-button class="deleteIcon" aria-label="delete Product icon" (click)="onDeleteClick(product.id)" color="warn">
       <mat-icon>delete</mat-icon>
     </button>
   </mat-card-actions>

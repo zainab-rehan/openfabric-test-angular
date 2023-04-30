@@ -41,13 +41,25 @@ export class ProductsService{
   addProduct(name:string, owner:string, cost:string, desc:string){
     const product: Product= {id:null, name:name, owner:owner, cost:cost, desc:desc};
 
-    this.http.post<{message : string}>('http://localhost:3000/products',product)
+    this.http.post<{message : string, productId : string}>('http://localhost:3000/products',product)
     .subscribe((responseData)=>{
       console.log(responseData);
+      //changing the id from null to the one assigned by mongoose
+      const id = responseData.productId;
+      product.id = id;
       this.productList.push(product);
-      //sending a copy of the updated list
       this.productsUpdated.next([...this.productList]);
     });
+  }
+
+  deleteProduct(productId : string){
+    this.http.delete('http://localhost:3000/products/' + productId )
+    .subscribe(()=>{
+      console.log(productId);
+      const updatedProducts = this.productList.filter(product => product.id != productId );
+      this.productList = updatedProducts;
+      this.productsUpdated.next([...this.productList]);
+    })
   }
 
 }

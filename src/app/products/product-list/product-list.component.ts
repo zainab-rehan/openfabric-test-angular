@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit, OnDestroy{
   onEditClick(){
 
   }
-  onDeleteClick(){
-
+  onDeleteClick(productId : string){
+    this.productsService.deleteProduct(productId);
   }
 }

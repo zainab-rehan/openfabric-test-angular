@@ -33,17 +33,23 @@ app.use((req, res, next)=>{
 });
 
 app.post('/products',(req, res, next)=>{
+
   const product = new Product({
     name : req.body.name,
     owner :req.body.owner,
     cost : req.body.cost,
     desc : req.body.desc
   });
+
   console.log(product);
-  product.save();
-  res.status(201).json({
-    message:'Product added successfully!'
+
+  product.save().then(savedProduct => {
+    res.status(201).json({
+      message:'Product added successfully!',
+      productId: savedProduct._id
+    });
   });
+
 });
 
 
@@ -57,6 +63,16 @@ app.get('/products',(req, res, next)=>{
     });
 
   });
+ });
+
+ app.delete('/products/:id', (req, res ,next)=>{
+  Product.deleteOne({_id : req.params.id})
+    .then(result =>{
+      console.log(result);
+      res.status(200)
+      .json({message:'Product deleted successfuly!'});
+  });
+
  });
 
  module.exports = app;
