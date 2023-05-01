@@ -13,14 +13,17 @@ import { ProductsService } from "../products.service";
 export class ProductListComponent implements OnInit, OnDestroy{
 
   productList : Product[] = [];
+  isloading = false;
   private productsSub: Subscription;
   constructor(public productsService : ProductsService){}
 
   ngOnInit(): void {
+    this.isloading = true;
     this.productsService.getProducts();
     //3 parameters --- subscribe(data, error, when no more data can be added)
     this.productsSub = this.productsService.getProductUpdateListner()
       .subscribe(( productList: Product[])=>{
+        this.isloading = false;
         this.productList = productList;
     });
   }

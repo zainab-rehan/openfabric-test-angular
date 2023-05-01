@@ -25,3 +25,9 @@
 .actionBoxStyle{
   padding: 0px;
 }
+
+mat-spinner{
+  margin: auto;
+  height: 20px;
+  width: 20px;
+}

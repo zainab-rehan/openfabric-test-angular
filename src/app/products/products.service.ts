@@ -5,6 +5,7 @@ import { response } from "express";
 import { HttpClient } from "@angular/common/http";
 
 import { Product } from "./product.model";
+import { Router } from "@angular/router";
 
 
 @Injectable({providedIn:'root'})
@@ -12,7 +13,7 @@ export class ProductsService{
   private productList: Product[] = [];
   private productsUpdated = new Subject<Product[]>();
 
-  constructor(private http : HttpClient){}
+  constructor(private http : HttpClient, private router : Router){}
 
   getProducts(){
     this.http
@@ -38,7 +39,11 @@ export class ProductsService{
     return this.productsUpdated.asObservable();
   }
 
-  addProduct(name:string, owner:string, cost:string, desc:string){
+  getProduct(id : string){
+    return this.http.get<{_id: string; name: string; owner:string; cost: string; desc:string }>('http://localhost:3000/products/' + id);
+  }
+
+  addProduct(name : string, owner : string, cost : string, desc : string){
     const product: Product= {id:null, name:name, owner:owner, cost:cost, desc:desc};
 
     this.http.post<{message : string, productId : string}>('http://localhost:3000/products',product)
@@ -49,6 +54,21 @@ export class ProductsService{
       product.id = id;
       this.productList.push(product);
       this.productsUpdated.next([...this.productList]);
+      this.router.navigate(["/"]);
+    });
+  }
+
+  updateProduct( productId : string, name : string, owner : string, cost : string, desc : string){
+    const product: Product= {id:productId, name:name, owner:owner, cost:cost, desc:desc};
+    this.http.put('http://localhost:3000/products/' + productId,product)
+    .subscribe( response => {
+      console.log(response);
+      const updatedProducts = [...this.productList];
+      const oldProductIndex = updatedProducts.findIndex( prod => prod.id === product.id);
+      updatedProducts[oldProductIndex] = product;
+      this.productList = updatedProducts;
+      this.productsUpdated.next([...this.productList]);
+      this.router.navigate(["/"]);
     });
   }
 

@@ -1,9 +1,8 @@
-//2OEiubfdOvjvqczP
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const Product = require('./models/product');
+
+const productRoutes = require('./routes/products');
 
 const app = express();
 
@@ -27,52 +26,12 @@ app.use((req, res, next)=>{
   );
 
   res.setHeader("Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS"
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS "
   );
   next();
 });
 
-app.post('/products',(req, res, next)=>{
+app.use('/products',productRoutes);
 
-  const product = new Product({
-    name : req.body.name,
-    owner :req.body.owner,
-    cost : req.body.cost,
-    desc : req.body.desc
-  });
-
-  console.log(product);
-
-  product.save().then(savedProduct => {
-    res.status(201).json({
-      message:'Product added successfully!',
-      productId: savedProduct._id
-    });
-  });
-
-});
-
-
-app.get('/products',(req, res, next)=>{
-  Product.find()
-  .then(documents => {
-    console.log(documents);
-    res.status(200).json({
-      message:'Products fetch successfully!',
-      products:documents
-    });
-
-  });
- });
-
- app.delete('/products/:id', (req, res ,next)=>{
-  Product.deleteOne({_id : req.params.id})
-    .then(result =>{
-      console.log(result);
-      res.status(200)
-      .json({message:'Product deleted successfuly!'});
-  });
-
- });
 
  module.exports = app;

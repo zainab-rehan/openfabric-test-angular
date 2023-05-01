@@ -1,14 +1,13 @@
 <mat-toolbar class="crudBarStyle">
   <span class="crudHeaderSpacer"></span>
 
-  <a routerLink="">
-   <button mat-icon-button class="listIcon" aria-label="List icon">
-      <mat-icon>folder_open</mat-icon>
-    </button>
+  <a routerLink="" mat-button class="listIcon">
+    <span class="btnName">Your List</span>
+    <mat-icon>folder_open</mat-icon>
   </a>
 
-  <a mat-button routerLink="/create" routerLinkActive="mat-accent">
-    <span class="btnName">Add New Product</span>
+  <a mat-button routerLink="/create">
+    <span class="btnName">Add New</span>
     <mat-icon>add_circle_outline</mat-icon>
    <!--  <button mat-icon-button class="cartIcon" aria-label="Add icon">
       <mat-icon>add_circle_outline</mat-icon>

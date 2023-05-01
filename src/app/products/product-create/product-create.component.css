@@ -28,3 +28,9 @@ textarea{
   display: flex;
  justify-content:end;
 }
+
+mat-spinner{
+  margin :auto;
+  height: 20px;
+  width: 20px;
+}
