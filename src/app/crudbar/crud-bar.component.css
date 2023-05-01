@@ -5,3 +5,18 @@
 .crudHeaderSpacer{
   flex: 1 1 ;
 }
+
+a{
+  text-decoration: none;
+  color: darkslateblue;
+  display: flex;
+}
+a:hover{
+  color: rgb(31, 25, 76);
+}
+.btnName{
+  font-family: sans-serif;
+  letter-spacing: -0.5px;
+  padding-top: 10px;
+  font-size: 16px; ;
+}

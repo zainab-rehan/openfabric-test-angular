@@ -1,59 +1,59 @@
-<h2>Add New Product Here</h2>
-  <mat-card>
-    <form (submit)="onAddProduct(productForm)" #productForm="ngForm" >
-      <mat-form-field class="example-full-width">
-        <mat-label>Course Name</mat-label>
-        <input
-        matInput
-        type="text"
-        name="name"
-        ngModel
-        required
-        #title="ngModel">
-        <mat-error *ngIf="title.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label>Course Owner</mat-label>
-        <input
-        matInput
-        type="text"
-        name="owner"
-        ngModel
-        required
-        #owner="ngModel">
-        <mat-error *ngIf="owner.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-      <mat-form-field class="textBg">
-        <mat-label>Course Cost</mat-label>
-        <input
-        matInput
-        type="text"
-        name="cost"
-        ngModel
-        required
-        #cost="ngModel">
-        <mat-hint>Enter cost in USD($)</mat-hint>
-        <mat-error *ngIf="cost.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Course Description</mat-label>
-        <textarea
-        matInput
-        rows="4"
-        name="desc"
-        ngModel
-        required
-        #desc="ngModel"></textarea>
-        <mat-error *ngIf="desc.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
+<h2>Add New Product</h2>
+<mat-card>
+  <form (submit)="onAddProduct(productForm)" #productForm="ngForm" >
+    <mat-form-field class="example-full-width">
+      <mat-label>Course Name</mat-label>
+      <input
+      matInput
+      type="text"
+      name="name"
+      ngModel
+      required
+      #title="ngModel">
+      <mat-error *ngIf="title.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Course Owner</mat-label>
+      <input
+      matInput
+      type="text"
+      name="owner"
+      ngModel
+      required
+      #owner="ngModel">
+      <mat-error *ngIf="owner.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="textBg">
+      <mat-label>Course Cost</mat-label>
+      <input
+      matInput
+      type="text"
+      name="cost"
+      ngModel
+      required
+      #cost="ngModel">
+      <mat-hint>Enter cost in USD($)</mat-hint>
+      <mat-error *ngIf="cost.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Course Description</mat-label>
+      <textarea
+      matInput
+      rows="4"
+      name="desc"
+      ngModel
+      required
+      #desc="ngModel"></textarea>
+      <mat-error *ngIf="desc.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
     <button
-    mat-raised-button
-    color='primary'
-    class="addBtn"
-    type="submit">Save Product</button>
-    </form>
-
-  </mat-card>
+      mat-raised-button
+      color='primary'
+      class="addBtn"
+      type="submit">Save Product
+    </button>
+  </form>
+</mat-card>
 
 
 

@@ -16,6 +16,7 @@ import { ProductCreateComponent } from './products/product-create/product-create
 import { HeaderComponent } from './header/header.component';
 import { crudBarComponent } from './crudbar/crud-bar.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,

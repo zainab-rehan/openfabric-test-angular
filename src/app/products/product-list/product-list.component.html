@@ -16,6 +16,7 @@
 </mat-accordion>
 <p *ngIf="productList.length <= 0" class="noProductText mat-body-1">No course added yet!</p>
  -->
+<h2>My Product List</h2>
 <mat-accordion multi="true" *ngIf="productList.length > 0" class="listStyle">
 <mat-card class="productCard" *ngFor="let product of productList">
   <mat-card-header>
