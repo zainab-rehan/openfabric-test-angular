@@ -5,6 +5,8 @@ import { ProductListComponent } from "./products/product-list/product-list.compo
 import { ProductCreateComponent } from "./products/product-create/product-create.component";
 import { LoginComponent } from "./auth/login/login.component";
 import { SignupComponent } from "./auth/signup/signup.component";
+import { LoginComponent } from "./auth/login/login.component";
+import { SignupComponent } from "./auth/signup/signup.component";
 
 
 const routes: Routes = [

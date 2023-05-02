@@ -31,11 +31,14 @@ import { SignupComponent } from './auth/signup/signup.component';
     ProductListComponent,
     LoginComponent,
     SignupComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,
