@@ -3,6 +3,29 @@
   padding-bottom: 1em;
   background-color: rgb(255, 255, 255) !important;
 }
+form,mat-form-field,
+input,
+textarea{
+  width:100%;
+
+}
+mat-spinner{
+  margin :auto;
+  height: 20px;
+  width: 20px;
+}
+input[type = 'file']{
+  visibility: hidden;
+}
+
+.addBtn{
+  margin: 1em;
+  width: 135px;
+}
+.addBtnAlign{
+  display: flex;
+ justify-content:end;
+}
 .addForm {
   width: 100%;
 
@@ -13,31 +36,14 @@
 .example-full-width {
   width: 100%;
 }
-
-form,mat-form-field,
-input,
-textarea{
-  width:100%;
-
-}
-.addBtn{
-  margin: 1em;
-  width: 135px;
-}
-.addBtnAlign{
-  display: flex;
- justify-content:end;
-}
-
-mat-spinner{
-  margin :auto;
-  height: 20px;
-  width: 20px;
-}
-
-input[type = 'file']{
-  visibility: hidden;
-}
 .imgBtn{
   margin-left: 15px;
+}
+.imgPreview{
+  height: 5rem;
+  margin: 1rem;
+  align-items: center;
+}
+.imgPreview img{
+  height: 100%;
 }

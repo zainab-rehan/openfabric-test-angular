@@ -5,7 +5,7 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 
 import { Product } from '../product.model';
 import { ProductsService } from "../products.service";
-
+import { mimeType } from "./mime-type.validator";
 
 @Component({
   selector: 'app-product-create',
@@ -22,6 +22,7 @@ export class ProductCreateComponent implements OnInit{
   product : Product;
   isloading = false;
   form : FormGroup;
+  imgPreview : string;
 
   private mode = 'create';
   private productId : string;
@@ -30,10 +31,9 @@ export class ProductCreateComponent implements OnInit{
   constructor(public productsService: ProductsService,public route: ActivatedRoute){}
 
   ngOnInit(){
-
     this.form = new FormGroup({
       'name': new FormControl(null, {
-        validators :[Validators.required , Validators.minLength(3)]
+        validators :[Validators.required ,Validators.minLength(3)]
       }),
       'owner': new FormControl(null, {
         validators :[Validators.required ]
@@ -43,6 +43,10 @@ export class ProductCreateComponent implements OnInit{
       }),
       'desc': new FormControl(null, {
         validators :[Validators.required ]
+      }),
+      'image': new FormControl(null, {
+        validators :[Validators.required ],
+        asyncValidators:[mimeType]
       })
     });
 
@@ -57,14 +61,15 @@ export class ProductCreateComponent implements OnInit{
             name : productData.name,
             owner : productData.owner,
             cost : productData.cost,
-            desc : productData.desc
+            desc : productData.desc,
+            imagePath : productData.imagePath
           };
-
           this.form.setValue({
             name : this.product.name,
             owner : this.product.owner,
             cost : this.product.cost,
-            desc : this.product.desc
+            desc : this.product.desc,
+            image : this.product.imagePath
           });
         });
       } else{
@@ -72,6 +77,18 @@ export class ProductCreateComponent implements OnInit{
         this.productId = null;
       }
     });
+  }
+
+  onImageSelected(event : Event){
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({image : file});
+    this.form.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = (e) =>{
+      this.imgPreview = reader.result as string;
+      console.log(e);
+    };
+    reader.readAsDataURL(file);
   }
 
   onSaveProduct(){
@@ -84,13 +101,16 @@ export class ProductCreateComponent implements OnInit{
       this.productsService.addProduct(this.form.value.name,
         this.form.value.owner,
         this.form.value.cost,
-        this.form.value.desc);
+        this.form.value.desc,
+        this.form.value.image);
     }else {
       this.productsService.updateProduct(this.productId,
         this.form.value.name,
         this.form.value.owner,
         this.form.value.cost,
-        this.form.value.desc);
+        this.form.value.desc,
+        this.form.value.image
+        );
     }
 
     this.form.reset();

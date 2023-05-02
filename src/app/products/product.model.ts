@@ -4,4 +4,5 @@ export interface Product{
   owner: string;
   cost:string;
   desc:string;
+  imagePath:string;
 }

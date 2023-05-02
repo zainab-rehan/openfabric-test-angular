@@ -5,6 +5,7 @@ const productSchema = mongoose.Schema({
   owner : {type : String, required : true},
   cost : {type : String, required : true},
   desc : {type : String, required : true},
+  imagePath : {type : String, required : true}
 });
 
 module.exports = mongoose.model('Product',productSchema);

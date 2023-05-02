@@ -4,6 +4,10 @@
   width: 100%;
   padding-bottom: 4rem;
 }
+
+mat-paginato{
+  margin-bottom: 1rem;
+}
 .noProductText{
   text-align: center;
 }
@@ -12,22 +16,61 @@
 }
 
 .productCard {
-  max-width: 100%;
+  width: 400px;
+  height: 400px;
   margin:1rem;
   border-radius: 8px;
   color:darkslateblue;
 }
-
+.productPanel{
+  width: 400px;
+  height: 400px;
+}
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
 .actionBoxStyle{
   padding: 0px;
+  display: inline;
 }
 
 mat-spinner{
   margin: auto;
   height: 20px;
   width: 20px;
+}
+
+.prodImg{
+  width: 100%;
+  height: 100%;
+}
+
+.prodImg img{
+  width: 100%;
+  height: 100%;
+}
+
+.prodImg2{
+  width: 400px;
+  height:  400px;
+}
+
+.prodImg2 img{
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+.imgBoundry
+{
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.listStyle
+{
+  margin-bottom: 1rem;
+  border-radius: 8px ;
 }
