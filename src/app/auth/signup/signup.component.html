@@ -1,7 +1,7 @@
-<h2>Login</h2>
+<h2>Sign Up</h2>
 <mat-card>
   <mat-spinner *ngIf="isloading"></mat-spinner>
-  <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isloading" >
+  <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isloading" >
     <mat-form-field class="example-full-width">
       <input
       matInput
@@ -30,7 +30,11 @@
       mat-raised-button
       color='primary'
       class="loginBtn"
-      type="submit">Login
+      type="submit">Sign Up
     </button>
   </form>
 </mat-card>
+
+
+
+
