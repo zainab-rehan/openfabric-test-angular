@@ -34,3 +34,10 @@ mat-spinner{
   height: 20px;
   width: 20px;
 }
+
+input[type = 'file']{
+  visibility: hidden;
+}
+.imgBtn{
+  margin-left: 15px;
+}

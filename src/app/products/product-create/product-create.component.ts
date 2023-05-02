@@ -1,5 +1,5 @@
 import { Component, OnInit} from "@angular/core";
-import { NgForm } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from "@angular/router";
 
@@ -21,6 +21,7 @@ export class ProductCreateComponent implements OnInit{
 
   product : Product;
   isloading = false;
+  form : FormGroup;
 
   private mode = 'create';
   private productId : string;
@@ -29,6 +30,22 @@ export class ProductCreateComponent implements OnInit{
   constructor(public productsService: ProductsService,public route: ActivatedRoute){}
 
   ngOnInit(){
+
+    this.form = new FormGroup({
+      'name': new FormControl(null, {
+        validators :[Validators.required , Validators.minLength(3)]
+      }),
+      'owner': new FormControl(null, {
+        validators :[Validators.required ]
+      }),
+      'cost': new FormControl(null, {
+        validators :[Validators.required, Validators.pattern("^[0-9]*$")]
+      }),
+      'desc': new FormControl(null, {
+        validators :[Validators.required ]
+      })
+    });
+
     this.route.paramMap.subscribe((paramMap : ParamMap)=>{
       if(paramMap.has('productId')){
         this.mode = 'edit';
@@ -40,7 +57,15 @@ export class ProductCreateComponent implements OnInit{
             name : productData.name,
             owner : productData.owner,
             cost : productData.cost,
-            desc : productData.desc}
+            desc : productData.desc
+          };
+
+          this.form.setValue({
+            name : this.product.name,
+            owner : this.product.owner,
+            cost : this.product.cost,
+            desc : this.product.desc
+          });
         });
       } else{
         this.mode = 'create';
@@ -49,26 +74,26 @@ export class ProductCreateComponent implements OnInit{
     });
   }
 
-  onSaveProduct(form:NgForm){
+  onSaveProduct(){
 
-    if(form.invalid){
+    if(this.form.invalid){
       return;
     }
     this.isloading = true;
     if( this.mode === 'create'){
-      this.productsService.addProduct(form.value.name,
-        form.value.owner,
-        form.value.cost,
-        form.value.desc);
+      this.productsService.addProduct(this.form.value.name,
+        this.form.value.owner,
+        this.form.value.cost,
+        this.form.value.desc);
     }else {
       this.productsService.updateProduct(this.productId,
-        form.value.name,
-        form.value.owner,
-        form.value.cost,
-        form.value.desc);
+        this.form.value.name,
+        this.form.value.owner,
+        this.form.value.cost,
+        this.form.value.desc);
     }
 
-    form.resetForm();
+    this.form.reset();
 
   }
 
@@ -78,16 +103,22 @@ export class ProductCreateComponent implements OnInit{
   cost = new FormControl('', [Validators.required]);
   desc = new FormControl('', [Validators.required]);
 
-  getErrorMessage(){
+  getTitleError(){
     if (this.title.hasError('required')) {
       return 'You must enter a value';
     }
+  }
+  getOwnerError(){
     if (this.owner.hasError('required')) {
       return 'You must enter a value';
     }
-    if (this.cost.hasError('required')) {
-      return 'You must enter a value';
+  }
+  getCostError(){
+    if(this.cost.hasError('required')) {
+      return 'You must enter a numeric value';
     }
+  }
+  getDescError(){
     if (this.desc.hasError('required')) {
       return 'You must enter a value';
     }

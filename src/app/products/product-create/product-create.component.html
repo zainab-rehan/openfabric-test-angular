@@ -1,52 +1,46 @@
 <h2>Add New Product</h2>
 <mat-card>
   <mat-spinner *ngIf="isloading"></mat-spinner>
-  <form (submit)="onSaveProduct(productForm)" #productForm="ngForm" *ngIf="!isloading" >
+  <form [formGroup]="form" (submit)="onSaveProduct()"  *ngIf="!isloading" >
     <mat-form-field class="example-full-width">
       <mat-label>Course Name</mat-label>
       <input
       matInput
       type="text"
-      name="name"
-      [ngModel] = "product?.name"
-      required
-      #title="ngModel">
-      <mat-error *ngIf="title.invalid">{{getErrorMessage()}}</mat-error>
+      formControlName="name">
+      <mat-error *ngIf="form.get('name').invalid">{{getTitleError()}}</mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Course Owner</mat-label>
       <input
       matInput
       type="text"
-      name="owner"
-      [ngModel] = "product?.owner"
-      required
-      #owner="ngModel">
-      <mat-error *ngIf="owner.invalid">{{getErrorMessage()}}</mat-error>
+      formControlName="owner">
+      <mat-error *ngIf="form.get('owner').invalid">{{getOwnerError()}}</mat-error>
     </mat-form-field>
     <mat-form-field class="textBg">
       <mat-label>Course Cost</mat-label>
       <input
       matInput
       type="text"
-      name="cost"
-      [ngModel] = "product?.cost"
-      required
-      #cost="ngModel">
+      formControlName="cost">
       <mat-hint>Enter cost in USD($)</mat-hint>
-      <mat-error *ngIf="cost.invalid">{{getErrorMessage()}}</mat-error>
+      <mat-error *ngIf="form.get('cost').invalid">{{getCostError()}}</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Course Description</mat-label>
       <textarea
       matInput
       rows="4"
-      name="desc"
-      [ngModel] = "product?.desc"
-      required
-      #desc="ngModel"></textarea>
-      <mat-error *ngIf="desc.invalid">{{getErrorMessage()}}</mat-error>
+      formControlName="desc"></textarea>
+      <mat-error *ngIf="form.get('desc').invalid">{{getDescError()}}</mat-error>
     </mat-form-field>
+    <div>
+      <button class="imgBtn" mat-stroked-button type="button" (click)="filePicker.click()">Add Image
+        <mat-icon>attach_file</mat-icon>
+      </button>
+      <input type="file" #filePicker>
+    </div>
     <button
       mat-raised-button
       color='primary'
