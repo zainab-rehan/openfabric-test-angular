@@ -4,9 +4,16 @@
   </button> -->
   <span>Zetsy</span>
   <span class="headerSpacer"></span>
-  
 
-  <button mat-icon-button class="accountIcon" aria-label="Account icon" (click)="onAccountClick()">
-    <mat-icon>account_circle</mat-icon>
-  </button>
+  <a routerLink="/login">
+    <button mat-icon-button class="loginIcon" aria-label="Login icon">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </a>
+  <a routerLink="/signup">
+    <button mat-icon-button class="SignupIcon" aria-label="Signup icon">
+      <mat-icon>supervisor_account</mat-icon>
+    </button>
+  </a>
+
 </mat-toolbar>
