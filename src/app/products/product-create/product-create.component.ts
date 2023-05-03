@@ -33,7 +33,7 @@ export class ProductCreateComponent implements OnInit{
   ngOnInit(){
     this.form = new FormGroup({
       'name': new FormControl(null, {
-        validators :[Validators.required ,Validators.minLength(3)]
+        validators :[Validators.required]
       }),
       'owner': new FormControl(null, {
         validators :[Validators.required ]

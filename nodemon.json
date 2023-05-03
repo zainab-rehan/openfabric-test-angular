@@ -1,0 +1,6 @@
+{
+  "env":{
+    "MONGO_DB_ATLAS":"2OEiubfdOvjvqczP",
+    "JWT_KEY":"secret_password_of_long_length"
+  }
+}
