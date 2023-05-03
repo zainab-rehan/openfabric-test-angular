@@ -3,20 +3,23 @@
     <span>Zetsy</span>
   </a>
   <span class="headerSpacer"></span>
-
-  <a *ngIf="!userIsAuthenticated" routerLink="/login">
-    <button mat-icon-button class="loginIcon" aria-label="Login icon">
-      <mat-icon>account_circle</mat-icon>
+  <div class="leftCont">
+    <a *ngIf="!userIsAuthenticated" routerLink="/login">
+      <button mat-button class="iconBtn" aria-label="Login icon">
+          <mat-icon>account_circle</mat-icon>
+          <span class="headerTxt">Login</span>
+      </button>
+    </a>
+    <a *ngIf="!userIsAuthenticated" routerLink="/signup">
+      <button mat-button class="iconBtn" aria-label="Signup icon">
+        <mat-icon>how_to_reg</mat-icon>
+        <span class="headerTxt">Signup</span>
+      </button>
+    </a>
+    <button *ngIf="userIsAuthenticated" mat-button class="iconBtn" aria-label="Logout icon" (click)="onLogout()">
+      <mat-icon>directions_walk</mat-icon>
+      <span class="headerTxt">Logout</span>
     </button>
-  </a>
-  <a *ngIf="!userIsAuthenticated" routerLink="/signup">
-    <button mat-icon-button class="SignupIcon" aria-label="Signup icon">
-      <mat-icon>how_to_reg</mat-icon>
-    </button>
-  </a>
-  <button *ngIf="userIsAuthenticated" mat-icon-button class="LogoutIcon" aria-label="Logout icon" (click)="onLogout()">
-    <mat-icon>directions_walk</mat-icon>
-  </button>
-
+  </div>
 </mat-toolbar>
 <app-crudbar *ngIf="userIsAuthenticated"></app-crudbar>

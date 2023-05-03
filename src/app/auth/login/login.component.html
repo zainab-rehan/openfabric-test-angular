@@ -1,5 +1,6 @@
 <h2>Login</h2>
-<mat-card>
+<mat-spinner *ngIf="isloading"></mat-spinner>
+<mat-card *ngIf="!isloading">
   <mat-spinner *ngIf="isloading"></mat-spinner>
   <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isloading" >
     <mat-form-field class="example-full-width">

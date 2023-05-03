@@ -9,3 +9,19 @@ a{
   text-decoration: none;
   color: white;
 }
+.headerTxt{
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+.leftCont{
+  display: flex;
+}
+.iconBtn{
+  background-color: rgb(38, 30, 87);
+  border-radius: 22px;
+  margin:10px
+}
+.iconBtn:hover{
+  background-color: rgb(225, 224, 234);
+  color: black;
+}
