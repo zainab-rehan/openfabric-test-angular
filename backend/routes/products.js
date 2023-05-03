@@ -1,7 +1,11 @@
 const express = require('express');
 const multer = require('multer');
+
 const Product = require('../models/product');
+const checkAuth = require('../middleware/check-auth');
+
 const router = express.Router();
+
 const MIME_TYPE_MAP = {
   'image/png' :'png',
   'image/jpeg' :'jpeg',
@@ -23,24 +27,27 @@ const storage = multer.diskStorage({
   },
 });
 
-router.post('',multer({storage: storage}).single("image"),(req, res, next)=>{
-  const url = req.protocol + "://" + req.get("host");
-  const product = new Product({
-    name : req.body.name,
-    owner :req.body.owner,
-    cost : req.body.cost,
-    desc : req.body.desc,
-    imagePath : url + '/images/' + req.file.filename
-  });
-  product.save().then(savedProduct => {
-    res.status(201).json({
-      message:'Product added successfully!',
-      product :{
-        ...savedProduct,
-        id: savedProduct._id
-      }
+router.post('',
+  checkAuth,
+  multer({storage: storage}).single("image"),
+  (req, res, next)=>{
+    const url = req.protocol + "://" + req.get("host");
+    const product = new Product({
+      name : req.body.name,
+      owner :req.body.owner,
+      cost : req.body.cost,
+      desc : req.body.desc,
+      imagePath : url + '/images/' + req.file.filename
     });
-  });
+    product.save().then(savedProduct => {
+      res.status(201).json({
+        message:'Product added successfully!',
+        product :{
+          ...savedProduct,
+          id: savedProduct._id
+        }
+      });
+    });
 });
 
 
@@ -80,27 +87,29 @@ router.get('/:id',(req, res, next)=>{
   });
 });
 
-router.put('/:id',multer({storage: storage}).single("image"),(req, res, next)=>{
-  let imagePath = req.body.imagePath;
-  if(req.file){
-    const url = req.protocol + "://" + req.get("host");
-    imagePath = url + '/images/' + req.file.filename;
-  }
-  const product = new Product({
-    _id : req.body.id,
-    name : req.body.name,
-    owner :req.body.owner,
-    cost : req.body.cost,
-    desc : req.body.desc,
-    imagePath: imagePath
-  });
-  Product.updateOne({_id:req.params.id},product).then( result =>{
-    res.status(200)
-    .json({message:'Product updated successfuly!'});
-  });
+router.put('/:id',
+  checkAuth,
+  multer({storage: storage}).single("image"),(req, res, next)=>{
+    let imagePath = req.body.imagePath;
+    if(req.file){
+      const url = req.protocol + "://" + req.get("host");
+      imagePath = url + '/images/' + req.file.filename;
+    }
+    const product = new Product({
+      _id : req.body.id,
+      name : req.body.name,
+      owner :req.body.owner,
+      cost : req.body.cost,
+      desc : req.body.desc,
+      imagePath: imagePath
+    });
+    Product.updateOne({_id:req.params.id},product).then( result =>{
+      res.status(200)
+      .json({message:'Product updated successfuly!'});
+    });
 });
 
-router.delete('/:id', (req, res ,next)=>{
+router.delete('/:id',checkAuth, (req, res ,next)=>{
 Product.deleteOne({_id : req.params.id})
   .then(result =>{
     res.status(200)

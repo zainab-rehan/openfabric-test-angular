@@ -1,19 +1,22 @@
 <mat-toolbar class="mainHeader">
-<!--   <button mat-icon-button class="menuIcon" aria-label="Menu icon" (click)="onMenuClick()">
-    <mat-icon>menu</mat-icon>
-  </button> -->
-  <span>Zetsy</span>
+  <a routerLink="">
+    <span>Zetsy</span>
+  </a>
   <span class="headerSpacer"></span>
 
-  <a routerLink="/login">
+  <a *ngIf="!userIsAuthenticated" routerLink="/login">
     <button mat-icon-button class="loginIcon" aria-label="Login icon">
       <mat-icon>account_circle</mat-icon>
     </button>
   </a>
-  <a routerLink="/signup">
+  <a *ngIf="!userIsAuthenticated" routerLink="/signup">
     <button mat-icon-button class="SignupIcon" aria-label="Signup icon">
-      <mat-icon>supervisor_account</mat-icon>
+      <mat-icon>how_to_reg</mat-icon>
     </button>
   </a>
+  <button *ngIf="userIsAuthenticated" mat-icon-button class="LogoutIcon" aria-label="Logout icon" (click)="onLogout()">
+    <mat-icon>directions_walk</mat-icon>
+  </button>
 
 </mat-toolbar>
+<app-crudbar *ngIf="userIsAuthenticated"></app-crudbar>

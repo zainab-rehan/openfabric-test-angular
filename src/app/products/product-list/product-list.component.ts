@@ -4,6 +4,7 @@ import { PageEvent } from "@angular/material/paginator";
 
 import { Product } from '../product.model';
 import { ProductsService } from "../products.service";
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector:'app-product-list',
@@ -18,8 +19,10 @@ export class ProductListComponent implements OnInit, OnDestroy{
   pageSizeOptions = [1,2,5,10];
   productList : Product[] = [];
   isloading = false;
+  userIsAuthenticated = false;
+  private authListnerSubs : Subscription;
   private productsSub: Subscription;
-  constructor(public productsService : ProductsService){}
+  constructor(public productsService : ProductsService, private authService:AuthService){}
 
   ngOnInit(){
     this.isloading = true;
@@ -31,9 +34,13 @@ export class ProductListComponent implements OnInit, OnDestroy{
         this.productList = productData.products;
         this.totalProducts = productData.productCount;
     });
-  }
-  ngOnDestroy(){
-    this.productsSub.unsubscribe();
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authListnerSubs = this.authService.getAuthStatusListener()
+    .subscribe(isAuthenticated =>
+      {
+        this.userIsAuthenticated = isAuthenticated;
+      }
+    );
   }
 
   onChangePage(pageData : PageEvent){
@@ -48,5 +55,10 @@ export class ProductListComponent implements OnInit, OnDestroy{
     this.productsService.deleteProduct(productId).subscribe(() =>{
       this.productsService.getProducts(this.prodPerPage, this.currentPage);
     });
+  }
+
+  ngOnDestroy(){
+    this.productsSub.unsubscribe();
+    this.authListnerSubs.unsubscribe();
   }
 }

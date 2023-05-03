@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ProductCreateComponent } from './products/product-create/product-create.component';
@@ -21,6 +21,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AuthInterceptor } from './auth/login/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,9 @@ import { SignupComponent } from './auth/signup/signup.component';
     MatPaginatorModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide : HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { AuthService } from "../auth/auth.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector:'app-crudbar',
@@ -7,8 +9,5 @@ import { Component } from "@angular/core";
 
 })
 export class crudBarComponent{
-  openPopup: boolean;
-  onAddClick(){
-    this.openPopup = !this.openPopup;
-  }
+
 }
